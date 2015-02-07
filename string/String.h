@@ -13,7 +13,7 @@
  * @param src       Pointer to a string.
  * @return          A pointer to the the destination string.
  */
-char *strCpy(char *dest, const char* src);
+char* strCpy(char *dest, const char* src);
 
 /** strnCpy
  * Copies a null-terminated string pointed to by src to the buffer pointed to by
@@ -28,6 +28,18 @@ char *strCpy(char *dest, const char* src);
  * @param n         Amount of characters to copy.
  * @return          A pointer to the the destination string.
  */
-char *strnCpy(char *dest, const char* src, size_t n);
+char* strnCpy(char *dest, const char* src, size_t n);
+
+/** strChr
+ * Searches for the first occurance of c in the null-terminated string pointed
+ * to by str. Here, the terminating null-byte is considered to be part of the
+ * string and is a valid character to search for.
+ *
+ * @param str       Pointer to a string.
+ * @param c         Value of the character to search for.
+ * @return          A pointer to the first occurance of c in str; NULL if no
+ *                  match.
+ */
+char* strChr(const char *str, int c);
 
 #endif // STRING_H
