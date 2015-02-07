@@ -13,7 +13,7 @@
  * @param src       Pointer to a string.
  * @return          A pointer to the the destination string.
  */
-char* strCpy(char *dest, const char* src);
+char* strCpy(char* dest, const char* src);
 
 /** strnCpy
  * Copies a null-terminated string pointed to by src to the buffer pointed to by
@@ -28,7 +28,7 @@ char* strCpy(char *dest, const char* src);
  * @param n         Amount of characters to copy.
  * @return          A pointer to the the destination string.
  */
-char* strnCpy(char *dest, const char* src, size_t n);
+char* strnCpy(char* dest, const char* src, size_t n);
 
 /** strChr
  * Searches for the first occurance of c in the null-terminated string pointed
@@ -40,6 +40,21 @@ char* strnCpy(char *dest, const char* src, size_t n);
  * @return          A pointer to the first occurance of c in str; NULL if no
  *                  match.
  */
-char* strChr(const char *str, int c);
+char* strChr(const char* str, int c);
+
+/** strCmp
+ * Compares two null-terminated strings s and t one character at a time.
+ * Function returns at the first nonmatching character or if s and t are
+ * identical.
+ *
+ * Note that each character is compared by its numerical value, i.e.
+ * "ab" > "Ab" if ASCII-encoding is used.
+ *
+ * @param s         Pointer to the first string.
+ * @param t         Pointer to the second string.
+ * @return          Larger than zero if s > t; Less than zero if s < t;
+ *                  Else zero.
+ */
+int strCmp(const char* s, const char* t);
 
 #endif // STRING_H
