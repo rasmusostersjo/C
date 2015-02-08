@@ -55,3 +55,14 @@ int strCmp(const char* s, const char* t)
     // Difference between the first non
     return *s - *t;
 }
+
+///////////////////////////// stpCpy ///////////////////////////////////////////
+
+char* stpCpy(char* dest, const char* src)
+{
+    // Copy src to dest -- dest points to terminating null byte after loop
+    while ( (*dest = *src++) )
+        dest++;
+
+    return dest;
+}

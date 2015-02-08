@@ -57,4 +57,16 @@ char* strChr(const char* str, int c);
  */
 int strCmp(const char* s, const char* t);
 
+/** stpCpy
+ * Copies a null-terminated string pointed to by src to the buffer pointed to by
+ * dest. It's the responsibility of the caller to provide a buffer that's large
+ * enough.
+ *
+ * @param dest      Pointer to a buffer.
+ * @param src       Pointer to a string.
+ * @return          A pointer to the the end of the destination string (i.e.
+ *                  the null-byte).
+ */
+char* stpCpy(char* dest, const char* src);
+
 #endif // STRING_H
