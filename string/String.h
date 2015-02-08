@@ -69,4 +69,17 @@ int strCmp(const char* s, const char* t);
  */
 char* stpCpy(char* dest, const char* src);
 
+/** strCat
+ * Appends the null-terminated string pointed to by dest with the
+ * null-terminated string pointed to by str. The terminating null-byte at the
+ * end of dest is overwritten and then added as soon as the merge is completed.
+ * It's the responsibility of the caller to provide a large enough string to
+ * safely appened src to dest.
+ *
+ * @param dest      Pointer to a string.
+ * @param src       Pointer to a string.
+ * @return          A pointer to dest.
+ */
+char* strCat(char* dest, const char* src);
+
 #endif // STRING_H
