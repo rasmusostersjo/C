@@ -74,12 +74,27 @@ char* stpCpy(char* dest, const char* src);
  * null-terminated string pointed to by str. The terminating null-byte at the
  * end of dest is overwritten and then added as soon as the merge is completed.
  * It's the responsibility of the caller to provide a large enough string to
- * safely appened src to dest.
+ * safely append src to dest.
  *
  * @param dest      Pointer to a string.
  * @param src       Pointer to a string.
  * @return          A pointer to dest.
  */
 char* strCat(char* dest, const char* src);
+
+/** strnCat
+ * Appends the null-terminated string pointed to by dest with the
+ * null-terminated string pointed to by str. The terminating null-byte at the
+ * end of dest is overwritten and at most n characters are copied. If there's no
+ * null-byte within the first n characters dest will not be null-terminated.
+ * It's the responsibility of the caller to provide a large enough string to
+ * safely append src to dest.
+ *
+ * @param dest      Pointer to a string.
+ * @param src       Pointer to a string.
+ * @param n         Max amount of characters to append.
+ * @return          A pointer to dest.
+ */
+char* strnCat(char* dest, const char* src, size_t n);
 
 #endif // STRING_H
