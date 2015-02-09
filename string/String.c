@@ -128,3 +128,26 @@ char* strDup(const char* str)
 
     return NULL;    // malloc failed
 }
+
+///////////////////////////// strSpn ///////////////////////////////////////////
+
+/*
+ * Here one might want to implemented a look up table to perform the look up
+ * with constant time.
+ */
+size_t strSpn(const char* s, const char* t)
+{
+    size_t hits = 0;
+
+    // traverse all bytes in s and stop if no match (i.e *tp == '\0')
+    for (const char* tp = t; *s && *tp; ++s) {
+        for (tp = t; *tp && (*s != *tp); ++tp)
+            ;
+
+        // found a match
+        if (*tp)
+            ++hits;
+    }
+
+    return hits;   // s points to an empty string
+}

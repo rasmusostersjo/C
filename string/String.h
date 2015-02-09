@@ -116,4 +116,16 @@ size_t strLen(const char* str);
  */
 char* strDup(const char* str);
 
+/** strSpn
+ * Calulates the length (in bytes) of the initial segment pointed to by s that
+ * consists entirely of bytes in the segment pointed to by t. The terminating
+ * null-byte is not included in the computation. In other words; the index of
+ * the first byte in s that's not in t is computed.
+ *
+ * @param s     Pointer to a null-terminated string.
+ * @param t     Pointer to a null-terminated string.
+ * @return      Index of the first byte in s that's not in t.
+ */
+size_t strSpn(const char* s, const char* t);
+
 #endif // STRING_H
