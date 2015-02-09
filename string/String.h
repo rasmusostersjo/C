@@ -97,4 +97,23 @@ char* strCat(char* dest, const char* src);
  */
 char* strnCat(char* dest, const char* src, size_t n);
 
+/** strLen
+ * Calculates the length of the null-terminated string str, excluding the
+ * terminating null-byte.
+ *
+ * @param str       Pointer to a string.
+ * @return          Size of the string.
+ */
+size_t strLen(const char* str);
+
+/** strDup
+ * Copies the null-terminated string str to a new string which is allocated
+ * on the heap using malloc. It's the resposibility of the caller to free the
+ * the allocation, see free(3).
+ *
+ * @param str       Pointer to a string.
+ * @return          Pointer to the duplicated string, NULL if malloc failed.
+ */
+char* strDup(const char* str);
+
 #endif // STRING_H

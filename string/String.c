@@ -1,4 +1,5 @@
 #include "String.h"
+#include <stdlib.h>     // malloc
 
 ///////////////////////////// strCpy ///////////////////////////////////////////
 
@@ -84,6 +85,8 @@ char* strCat(char* dest, const char* src)
     return destStart;
 }
 
+///////////////////////////// strnCat //////////////////////////////////////////
+
 char* strnCat(char* dest, const char* src, size_t n)
 {
     size_t i        = 0;
@@ -98,4 +101,30 @@ char* strnCat(char* dest, const char* src, size_t n)
         ;
 
     return destStart;
+}
+
+///////////////////////////// strLen ///////////////////////////////////////////
+
+size_t strLen(const char* str)
+{
+    size_t len = 0;
+
+    // Compute the length of str
+    while (*str++)
+        len++;
+
+    return len;
+}
+
+///////////////////////////// strDup ///////////////////////////////////////////
+
+char* strDup(const char* str)
+{
+    char* newString;
+
+    // str is not NULL and malloc call succeeded
+    if ( (newString = malloc(strLen(str) + 1)) )
+        return strCpy(newString, str);
+
+    return NULL;    // malloc failed
 }
