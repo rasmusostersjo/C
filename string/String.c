@@ -164,3 +164,17 @@ int strnCmp(const char* s, const char* t, size_t n)
 
     return diff;
 }
+
+///////////////////////////// strrChr //////////////////////////////////////////
+
+char* strrChr(const char* str, int c)
+{
+    const char* found = NULL;
+
+    // traverse str and update found every time c is found
+    while (*str++)
+        if (*str == c)
+            found = str;
+
+    return (char*)found;  // turn off compiler warnings
+}

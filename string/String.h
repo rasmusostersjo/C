@@ -141,4 +141,16 @@ size_t strSpn(const char* s, const char* t);
  */
 int strnCmp(const char* s, const char* t, size_t n);
 
+/** strrChr
+ * Searches for the last occurance of c in the null-terminated string pointed
+ * to by str. Here, the terminating null-byte is considered to be part of the
+ * string and is a valid character to search for.
+ *
+ * @param str       Pointer to a string.
+ * @param c         Value of the character to search for.
+ * @return          A pointer to the last occurance of c in str; NULL if no
+ *                  match.
+ */
+char* strrChr(const char* str, int c);
+
 #endif // STRING_H
