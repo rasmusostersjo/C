@@ -151,3 +151,16 @@ size_t strSpn(const char* s, const char* t)
 
     return hits;   // s points to an empty string
 }
+
+///////////////////////////// strnCmp //////////////////////////////////////////
+
+int strnCmp(const char* s, const char* t, size_t n)
+{
+    int diff = 0; // if n = 0 we don't want to return *s - *t
+
+    // stop if s or t ends, n characters were compared or *s != *t
+    for (size_t i = 0; i < n && *s && !diff; ++i, ++s, ++t)
+        diff = *s - *t;
+
+    return diff;
+}

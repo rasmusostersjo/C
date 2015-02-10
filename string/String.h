@@ -128,4 +128,17 @@ char* strDup(const char* str);
  */
 size_t strSpn(const char* s, const char* t);
 
+/** strnCmp
+ * Compares two null-terminated strings s and t one character at a time. At most
+ * n characters are compared. Function returns at the first nonmatching
+ * character or if s and t are identical.
+ *
+ * @param s         Pointer to the first string.
+ * @param t         Pointer to the second string.
+ * @param n         Maximum amount of characters to compare.
+ * @return          Larger than zero if s > t; Less than zero if s < t;
+ *                  Else zero.
+ */
+int strnCmp(const char* s, const char* t, size_t n);
+
 #endif // STRING_H
