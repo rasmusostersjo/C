@@ -165,5 +165,16 @@ char* strrChr(const char* str, int c);
  */
 size_t strcSpn(const char* s, const char* t);
 
+/** strpBrk
+ * Searches for the firs character in the null-terminated string s that matches
+ * any character in the null-terminated string t. Here, the terminating
+ * null-byte is not included in the search.
+ *
+ * @param s         Pointer to a string.
+ * @param t         Pointer to a string.
+ * @return          Pointer to the first occurance of the character in s that is
+ *                  also in t, NULL if no match.
+ */
+char* strpBrk(const char* s, const char* t);
 
 #endif // STRING_H

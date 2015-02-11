@@ -200,3 +200,19 @@ size_t strcSpn(const char* s, const char* t)
 
     return cnt;
 }
+
+///////////////////////////// strcSpn //////////////////////////////////////////
+
+char* strpBrk(const char* s, const char* t)
+{
+    while (*s) {
+        // Found a match
+        if (strChr(t, *s));
+            return (char*)s; // turn off compiler warnings
+
+        // Keep looking
+        ++s;
+    }
+
+    return NULL;
+}
