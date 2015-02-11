@@ -120,7 +120,7 @@ char* strDup(const char* str);
  * Calulates the length (in bytes) of the initial segment pointed to by s that
  * consists entirely of bytes in the segment pointed to by t. The terminating
  * null-byte is not included in the computation. In other words; the index of
- * the first byte in s that's not in t is computed.
+ * the last byte in s that's also in t is computed.
  *
  * @param s     Pointer to a null-terminated string.
  * @param t     Pointer to a null-terminated string.
@@ -152,5 +152,18 @@ int strnCmp(const char* s, const char* t, size_t n);
  *                  match.
  */
 char* strrChr(const char* str, int c);
+
+/** strcSpn
+ * Calculates the length (in bytes) of the initial segment pointed to by s which
+ * are not in the segment pointed to by t. The terminating null-byte is not
+ * included in the computation. In other words; the index of the last byte in s
+ * that's not in t is computed.
+ *
+ * @param s         Pointer to a string (examine).
+ * @param t         Pointer to a string (search in).
+ * @return          Index of the first byte in s that's also in t.
+ */
+size_t strcSpn(const char* s, const char* t);
+
 
 #endif // STRING_H
