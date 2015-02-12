@@ -177,4 +177,15 @@ size_t strcSpn(const char* s, const char* t);
  */
 char* strpBrk(const char* s, const char* t);
 
+/** strStr
+ * Fins the first occurance of the null-terminated substring t in the 
+ * null-terminated string s. Here, the terminating null-bytes are not compared.
+ *
+ * @param s         Pointer to a string.
+ * @param s         Pointer to a string.
+ * @return          A pointer to the begining of the substring, NULL if no match
+ *                  could be found.
+ */
+char* strStr(const char* s, const char* t);
+
 #endif // STRING_H
