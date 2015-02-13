@@ -233,3 +233,34 @@ char* strStr(const char* s, const char* t)
     
     return NULL;
 }
+
+///////////////////////////// strTok ///////////////////////////////////////////
+
+char* strTok(char* str, const char* delim)
+{
+    static char* s;
+    char* ret = NULL;
+
+    // Job is not done yet
+    if (str || *s) {
+
+        // Caller passed a new string
+        if (str)
+            s = str;
+
+        // Continue with s (ignore leading delimer-bytes in s)
+        else
+            while (*s && strChr(delim, *s))
+                ++s;
+
+        // Search for next delimer byte
+        for (ret = s; *s && !strChr(delim, *s); ++s)
+            ;
+
+        // Only increment s if not at the end of str
+        if (*s)
+            *s++ = '\0';
+    }
+
+    return ret;
+}

@@ -188,4 +188,16 @@ char* strpBrk(const char* s, const char* t);
  */
 char* strStr(const char* s, const char* t);
 
+/** strTok
+ * Breaks a null-terminated string into a sequence of zero or more nonempty 
+ * tokens. On the first function call the string to be parsed should be pointed
+ * to by str. In each subsequent call that should parse the same string, str
+ * must be set to NULL.
+ * 
+ * @param str       Pointer to a string (first call); NULL (else).
+ * @param delim     Pointer to a null-terminated string with delimiting bytes.
+ * @return          Pointer to the next token; NULL if there are no more tokens.
+ */
+char* strTok(char* str, const char* delim);
+
 #endif // STRING_H
