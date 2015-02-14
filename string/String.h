@@ -200,4 +200,17 @@ char* strStr(const char* s, const char* t);
  */
 char* strTok(char* str, const char* delim);
 
+/** strSep
+ * Breaks a null-terminated string into sequences of one or more tokens that
+ * consists of at minimum one terminiating null-byte.
+ *
+ * @param str_ptr   Pointer to a string-pointer containing the string to break
+ *                  down into tokens. The string-pointer is updated to point to
+ *                  next byte after the latest token; NULL if there are no more
+ *                  tokens.
+ * @param delim     Pointer to a null-terminated string with delimiting bytes.
+ * @return          Pointer to the next token; NULL if *str_ptr was NULL. 
+ */
+char* strSep(char** str_ptr, char* delim);
+
 #endif // STRING_H

@@ -265,3 +265,27 @@ char* strTok(char* str, const char* delim)
 
     return ret;
 }
+
+///////////////////////////// strSep ///////////////////////////////////////////
+
+char* strSep(char** str_ptr, char* delim)
+{
+    char* r = NULL;
+
+    if (*str_ptr) {
+
+        // search for next delimiter byte
+        for (r = *str_ptr; **str_ptr && !strChr(delim, **str_ptr); ++(*str_ptr))
+            ;
+
+        // terminate current token and update str_ptr to the next token
+        if (**str_ptr)
+            *(*str_ptr)++ = '\0';
+
+        // no more tokens
+        else
+            *(str_ptr) = NULL;
+    }
+
+    return r;
+}
