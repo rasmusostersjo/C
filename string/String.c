@@ -248,18 +248,19 @@ char* strTok(char* str, const char* delim)
         if (str)
             s = str;
 
-        // Continue with s (ignore leading delimer-bytes in s)
-        else
-            while (*s && strChr(delim, *s))
-                ++s;
-
         // Search for next delimer byte
         for (ret = s; *s && !strChr(delim, *s); ++s)
             ;
 
         // Only increment s if not at the end of str
-        if (*s)
+        if (*s) {
+            // terminate next token
             *s++ = '\0';
+
+            // skip leading delimiter bytes
+            while (*s && strChr(delim, *s))
+                ++s;
+        }
     }
 
     return ret;
