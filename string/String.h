@@ -213,4 +213,18 @@ char* strTok(char* str, const char* delim);
  */
 char* strSep(char** str_ptr, char* delim);
 
+/** strTok_r
+ * Breaks a null-terminated string into a sequence of zero or more nonempty
+ * tokens. On the first function call the string to be parsed should be passed
+ * via str and the value of save_ptr is ignored. In each subsequent call that
+ * should parse the same string str must be set to NULL and and save_ptr must be
+ * unchanged since the previous call.
+ *
+ * @param str       Pointer to a string (first call); NULL (else).
+ * @param delim     Pointer to a null-terminated string with delimiting bytes.
+ * @param save_ptr  Pointer to a string-pointer that is used internally.
+ * @return          Pointer to the next token; NULL if there are no more tokens.
+ */
+char* strTok_r(char* str, const char* delim, char** save_ptr);
+
 #endif // STRING_H
