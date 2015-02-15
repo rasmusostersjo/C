@@ -1,3 +1,9 @@
+/*
+ * Notation:
+ *  String          - A null-terminated character array.
+ *  Character       - Assumed to be one byte.
+ */
+
 #ifndef STRING_H
 #define STRING_H
 
@@ -5,225 +11,239 @@
 #include <stddef.h>     // size_t
 
 /** strCpy
- * Copies a null-terminated string pointed to by src to the buffer pointed to by
- * dest. It's the responsibility of the caller to provide a buffer that's large
- * enough.
+ * Copies the string pointed to by src, including the terminating null-byte, to
+ * the buffer pointed to by dest. It is the caller's responsibility to provide a
+ * large enough buffer.
  *
- * @param dest      Pointer to a buffer.
- * @param src       Pointer to a string.
- * @return          A pointer to the the destination string.
+ * @param dest      Pointer to the destination buffer.
+ * @param src       Pointer to the source string.
+ * @return          A pointer to the destination string.
  */
 char* strCpy(char* dest, const char* src);
 
 /** strnCpy
- * Copies a null-terminated string pointed to by src to the buffer pointed to by
- * dest. At most n characters are copied, and if there's no terminating null
- * byte among that interval dest will not be null-terminated. If the string
- * pointed to by src contains less characters than n strnCpy writes additional m
- * null bytes to ensure n characters were written. Note that it's the
- * responsibility of the caller to procive a buffer that's large enough.
+ * Copies at most n bytes from the string pointed to by src to the buffer
+ * pointed to by dest. If there is no null-byte among the first n characters,
+ * the destination string will not be null-terminated.
  *
- * @param dest      Pointer to a buffer.
- * @param src       Pointer to a string.
- * @param n         Amount of characters to copy.
- * @return          A pointer to the the destination string.
+ * The strnCpy() function ensures that n bytes are written. In the case of n
+ * being larger than the length of the string pointed to by src additional
+ * null-bytes are written to the end of the buffer. Note that it is the caller's
+ * responsibility to provide a large enough buffer.
+ *
+ * @param dest      Pointer to the destination buffer.
+ * @param src       Pointer to the source string.
+ * @return          A pointer to the destination string.
  */
 char* strnCpy(char* dest, const char* src, size_t n);
 
 /** strChr
- * Searches for the first occurance of c in the null-terminated string pointed
- * to by str. Here, the terminating null-byte is considered to be part of the
- * string and is a valid character to search for.
+ * Searches for the first occurrence of the character ch in the string pointed
+ * to by str. The terminating null-byte is considered to be part of the string.
+ * Thus, a null-byte is a valid character to search for.
  *
- * @param str       Pointer to a string.
- * @param c         Value of the character to search for.
- * @return          A pointer to the first occurance of c in str; NULL if no
- *                  match.
+ * @param str       Pointer to the string to parse.
+ * @param ch        The character to search for.
+ * @return          A pointer to the first occurrence of ch in the string
+ *                  pointed to by str; NULL if no match could be found.
  */
-char* strChr(const char* str, int c);
+char* strChr(const char* str, int ch);
 
 /** strCmp
- * Compares two null-terminated strings s and t one character at a time.
- * Function returns at the first nonmatching character or if s and t are
- * identical.
+ * Compares the strings pointed to by s and t one character at a time. The
+ * strCmp() function returns at the first non-matching character or if either of
+ * the parsed strings end.
  *
- * Note that each character is compared by its numerical value, i.e.
- * "ab" > "Ab" if ASCII-encoding is used.
- *
- * @param s         Pointer to the first string.
- * @param t         Pointer to the second string.
- * @return          Larger than zero if s > t; Less than zero if s < t;
- *                  Else zero.
+ * @param s         Pointer to a string.
+ * @param t         Pointer to a string.
+ * @return          Larger than zero:  s > t;
+ *                  Less than zero:    s < t;
+ *                  Else:              0
  */
 int strCmp(const char* s, const char* t);
 
 /** stpCpy
- * Copies a null-terminated string pointed to by src to the buffer pointed to by
- * dest. It's the responsibility of the caller to provide a buffer that's large
- * enough.
+ * Copies the string pointed to by src, including the terminating null-byte, to
+ * the buffer pointed to by dest. It is the caller's responsibility to provide a
+ * large enough buffer.
  *
- * @param dest      Pointer to a buffer.
- * @param src       Pointer to a string.
- * @return          A pointer to the the end of the destination string (i.e.
- *                  the null-byte).
+ * @param dest      Pointer to the destination buffer.
+ * @param src       Pointer to the source string.
+ * @return          A pointer to the end of destination string (the null-byte).
  */
 char* stpCpy(char* dest, const char* src);
 
 /** strCat
- * Appends the null-terminated string pointed to by dest with the
- * null-terminated string pointed to by str. The terminating null-byte at the
- * end of dest is overwritten and then added as soon as the merge is completed.
- * It's the responsibility of the caller to provide a large enough string to
- * safely append src to dest.
+ * Appends the string pointed to by src, including the terminating null-byte, to
+ * the string pointed to by dest. The terminating null-byte in the original
+ * string pointed to by dest is overwritten. It is the caller's responsibility
+ * to provide a large enough destination string.
  *
- * @param dest      Pointer to a string.
- * @param src       Pointer to a string.
- * @return          A pointer to dest.
+ * @param dest      Pointer to the destination string.
+ * @param src       Pointer to a string to append.
+ * @return          A pointer to destination string.
  */
 char* strCat(char* dest, const char* src);
 
-/** strnCat
- * Appends the null-terminated string pointed to by dest with the
- * null-terminated string pointed to by str. The terminating null-byte at the
- * end of dest is overwritten and at most n characters are copied. If there's no
- * null-byte within the first n characters dest will not be null-terminated.
- * It's the responsibility of the caller to provide a large enough string to
- * safely append src to dest.
+/** strCat
+ * Appends the string pointed to by src, including the terminating null-byte, to
+ * the string pointed to by dest. At most n characters are appended. If there is
+ * no terminating null-byte within the first n characters the destination
+ * string will not be null-terminated. It is the caller's responsibility to
+ * provide a large enough destination string.
  *
- * @param dest      Pointer to a string.
- * @param src       Pointer to a string.
- * @param n         Max amount of characters to append.
- * @return          A pointer to dest.
+ * @param dest      Pointer to the destination string.
+ * @param src       Pointer to a string to append.
+ * @param n         Maximum amount of characters to append.
+ * @return          A pointer to the destination string.
  */
 char* strnCat(char* dest, const char* src, size_t n);
 
 /** strLen
- * Calculates the length of the null-terminated string str, excluding the
+ * Computes the length of the string pointed to by str, excluding the
  * terminating null-byte.
  *
  * @param str       Pointer to a string.
- * @return          Size of the string.
+ * @return          Length of the string, excluding the terminating null-byte.
  */
 size_t strLen(const char* str);
 
 /** strDup
- * Copies the null-terminated string str to a new string which is allocated
- * on the heap using malloc. It's the resposibility of the caller to free the
- * the allocation, see free(3).
+ * Copies the string pointed to by str to a new string allocated on the heap
+ * using malloc. It is the caller's responsibility to free the the allocation
+ * using free().
  *
- * @param str       Pointer to a string.
- * @return          Pointer to the duplicated string, NULL if malloc failed.
+ * @param str       Pointer to a string to dublicate.
+ * @return          Pointer to the duplicated string; NULL if malloc failed.
  */
 char* strDup(const char* str);
 
 /** strSpn
- * Calulates the length (in bytes) of the initial segment pointed to by s that
- * consists entirely of bytes in the segment pointed to by t. The terminating
- * null-byte is not included in the computation. In other words; the index of
- * the last byte in s that's also in t is computed.
+ * Computes the length of the initial segment pointed to by s that consists
+ * entirely of characters in the segment pointed to by t. The terminating
+ * null-byte is not included in the computation.
  *
- * @param s     Pointer to a null-terminated string.
- * @param t     Pointer to a null-terminated string.
- * @return      Index of the first byte in s that's not in t.
+ * @param s     Pointer to the string to parse.
+ * @param t     Pointer to a string with delimiting characters.
+ * @return      Length of the initial segment pointed to by s that consists
+ *              entirely of characters in the segment pointed to by t.
  */
 size_t strSpn(const char* s, const char* t);
 
 /** strnCmp
- * Compares two null-terminated strings s and t one character at a time. At most
- * n characters are compared. Function returns at the first nonmatching
- * character or if s and t are identical.
+ * Compares the strings pointed to by s and t one character at a time. At most
+ * n characters are compared. The strnCmp() function returns at the first
+ * non-matching character or if either of the parsed strings end.
  *
- * @param s         Pointer to the first string.
- * @param t         Pointer to the second string.
+ * @param s         Pointer to a string.
+ * @param t         Pointer to a string.
  * @param n         Maximum amount of characters to compare.
- * @return          Larger than zero if s > t; Less than zero if s < t;
- *                  Else zero.
+ * @return          Larger than zero:  s > t;
+ *                  Less than zero:    s < t;
+ *                  Else:              0
  */
 int strnCmp(const char* s, const char* t, size_t n);
 
 /** strrChr
- * Searches for the last occurance of c in the null-terminated string pointed
- * to by str. Here, the terminating null-byte is considered to be part of the
- * string and is a valid character to search for.
+ * Searches for the last occurrence of the character ch in the string pointed to
+ * by str. The terminating null-byte is considered to be part of the string.
+ * Thus, a null-byte is a valid character to search for.
  *
- * @param str       Pointer to a string.
- * @param c         Value of the character to search for.
- * @return          A pointer to the last occurance of c in str; NULL if no
- *                  match.
+ * @param str       Pointer to the string to parse.
+ * @param ch        The character to search for.
+ * @return          A pointer to the last occurrence of ch in the string pointed
+ *                  to by str; NULL if no match could be found.
  */
-char* strrChr(const char* str, int c);
+char* strrChr(const char* str, int ch);
 
 /** strcSpn
- * Calculates the length (in bytes) of the initial segment pointed to by s which
- * are not in the segment pointed to by t. The terminating null-byte is not
- * included in the computation. In other words; the index of the last byte in s
- * that's not in t is computed.
+ * Calculates the length of the initial segment pointed to by s that has no
+ * characters in the segment pointed to by t. The terminating null-byte is not
+ * included in the computation.
  *
- * @param s         Pointer to a string (examine).
- * @param t         Pointer to a string (search in).
- * @return          Index of the first byte in s that's also in t.
+ * @param s     Pointer to the string to parse.
+ * @param t     Pointer to a string with delimiting characters.
+ * @return      Length of the initial segment pointed to by s that has no
+ *              characters in the segment pointed to by t.
  */
 size_t strcSpn(const char* s, const char* t);
 
 /** strpBrk
- * Searches for the firs character in the null-terminated string s that matches
- * any character in the null-terminated string t. Here, the terminating
- * null-byte is not included in the search.
+ * Searches for the first character in the string pointed to by s that matches
+ * any character in the string pointed to by t. The terminating null-byte is not
+ * included in the search.
  *
- * @param s         Pointer to a string.
- * @param t         Pointer to a string.
- * @return          Pointer to the first occurance of the character in s that is
- *                  also in t, NULL if no match.
+ * @param s         Pointer to a string to parse.
+ * @param t         Pointer to a string with delimiting characters.
+ * @return          Pointer to the first matching character; NULL if no match
+ *                  could be found.
  */
 char* strpBrk(const char* s, const char* t);
 
 /** strStr
- * Fins the first occurance of the null-terminated substring t in the 
- * null-terminated string s. Here, the terminating null-bytes are not compared.
+ * Search for the first occurrence of the string pointed to by t in the string
+ * pointed to by s. The terminating null-bytes are not included in the search.
+ * Thus, searching for the empty string yields NULL.
  *
- * @param s         Pointer to a string.
- * @param s         Pointer to a string.
- * @return          A pointer to the begining of the substring, NULL if no match
- *                  could be found.
+ * @param s         Pointer to the string to parse.
+ * @param s         Pointer to the string to search for.
+ * @return          Pointer to the first occurrence of the string pointed to by
+ *                  t in the string pointed to by s; NULL if no match could be
+ *                  found.
  */
 char* strStr(const char* s, const char* t);
 
 /** strTok
- * Breaks a null-terminated string into a sequence of zero or more nonempty 
- * tokens. On the first function call the string to be parsed should be pointed
- * to by str. In each subsequent call that should parse the same string, str
- * must be set to NULL.
- * 
- * @param str       Pointer to a string (first call); NULL (else).
- * @param delim     Pointer to a null-terminated string with delimiting bytes.
- * @return          Pointer to the next token; NULL if there are no more tokens.
+ * Breaks the string pointed to by str into a sequence of zero or more
+ * non-empty  tokens. On the first call to strTok() the string to be parsed
+ * should be pointed to by str. In each subsequent call that parses the same
+ * string, str must be set to NULL.
+ *
+ * The strTok() function replaces the first occurrence of any delimiting
+ * character in the string initially pointed to by str with a null-byte. Leading
+ * delimiting characters are ignored on each call to strTok().
+ *
+ * @param str       Pointer to the string to parse (first call); NULL (else).
+ * @param delim     Pointer to a string with delimiting characters.
+ * @return          Pointer to the next token (null-terminated); NULL if there
+ *                  are no more tokens.
  */
 char* strTok(char* str, const char* delim);
 
 /** strSep
- * Breaks a null-terminated string into sequences of one or more tokens that
- * consists of at minimum one terminiating null-byte.
+ * Breaks the string pointed to by *str_ptr into sequences of one or more
+ * tokens that consists of at least a terminating null-byte.
  *
- * @param str_ptr   Pointer to a string-pointer containing the string to break
- *                  down into tokens. The string-pointer is updated to point to
- *                  next byte after the latest token; NULL if there are no more
+ * The strSep() function replaces any delimiting characters in the string
+ * pointed to by *str_ptr with a null-byte. Thus, empty tokens are returned
+ * if there are two or more adjacent delimiting characters.
+ *
+ * @param str_ptr   Pointer to a string-pointer. Here *str_ptr points to the
+ *                  string to break down into tokens. The string-pointer is,
+ *                  after each call to strSep(), updated to point to the
+ *                  character after the latest token; NULL if there are no more
  *                  tokens.
- * @param delim     Pointer to a null-terminated string with delimiting bytes.
+ * @param delim     Pointer to a string with delimiting characters.
  * @return          Pointer to the next token; NULL if *str_ptr was NULL. 
  */
-char* strSep(char** str_ptr, char* delim);
+char* strSep(char** str_ptr, const char* delim);
 
 /** strTok_r
- * Breaks a null-terminated string into a sequence of zero or more nonempty
- * tokens. On the first function call the string to be parsed should be passed
- * via str and the value of save_ptr is ignored. In each subsequent call that
- * should parse the same string str must be set to NULL and and save_ptr must be
- * unchanged since the previous call.
+ * Breaks the string pointed to by str into a sequence of zero or more
+ * non-empty tokens. On the first call to strTok_r() the string to be parsed
+ * should be pointed to by str. In each subsequent call that parses the same
+ * string, str must be set to NULL and save_ptr must be unchanged since the
+ * last call.
  *
- * @param str       Pointer to a string (first call); NULL (else).
- * @param delim     Pointer to a null-terminated string with delimiting bytes.
+ * The strTok_r() function replaces the first occurrence of any delimiting
+ * character in the string initially pointed to by str with a null-byte. Leading
+ * delimiting characters are ignored on each call to strTok_r().
+ *
+ * @param str       Pointer to the string to parse (first call); NULL (else).
+ * @param delim     Pointer to a string with delimiting characters.
  * @param save_ptr  Pointer to a string-pointer that is used internally.
- * @return          Pointer to the next token; NULL if there are no more tokens.
+ * @return          Pointer to the next token (null-terminated); NULL if there
+ *                  are no more tokens.
  */
 char* strTok_r(char* str, const char* delim, char** save_ptr);
 

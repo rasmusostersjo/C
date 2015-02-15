@@ -1,4 +1,4 @@
-#include "String.h"
+#include "String.h"     // Prototypes
 #include <stdlib.h>     // malloc
 
 ///////////////////////////// strCpy ///////////////////////////////////////////
@@ -36,18 +36,18 @@ char *strnCpy(char *dest, const char* src, size_t n)
 
 char* strChr(const char *str, int c)
 {
-    // Search the first occurance of c in str
+    // Search the first occurrence of c in str
     while (*str != c && *str++)
         ;
 
-    return *str == c ? (char*)str : NULL;   // disable warning with cast
+    return *str == c ? (char*)str : NULL;
 }
 
 ///////////////////////////// strCmp ///////////////////////////////////////////
 
 int strCmp(const char* s, const char* t)
 {
-    // Find first nonmatch and stop if s, t were identical
+    // Find first non-match and stop if s, t were identical
     while (*s == *t && *s) {
         s++;
         t++;
@@ -137,28 +137,28 @@ char* strDup(const char* str)
  */
 size_t strSpn(const char* s, const char* t)
 {
-    size_t hits = 0;
+    size_t matches = 0;
 
-    // traverse all bytes in s and stop if no match (i.e *tp == '\0')
+    // Traverse all bytes in s and stop if no match (i.e *tp == '\0')
     for (const char* tp = t; *s && *tp; ++s) {
         for (tp = t; *tp && (*s != *tp); ++tp)
             ;
 
-        // found a match
+        // Found a match
         if (*tp)
-            ++hits;
+            ++matches;
     }
 
-    return hits;   // s points to an empty string
+    return matches;
 }
 
 ///////////////////////////// strnCmp //////////////////////////////////////////
 
 int strnCmp(const char* s, const char* t, size_t n)
 {
-    int diff = 0; // if n = 0 we don't want to return *s - *t
+    int diff = 0; // If n = 0 we don't want to return *s - *t
 
-    // stop if s or t ends, n characters were compared or *s != *t
+    // Stop if s or t ends, n characters were compared or *s != *t
     for (size_t i = 0; i < n && *s && !diff; ++i, ++s, ++t)
         diff = *s - *t;
 
@@ -171,12 +171,12 @@ char* strrChr(const char* str, int c)
 {
     const char* found = NULL;
 
-    // traverse str and update found every time c is found
+    // Traverse str and update found every time c is found
     while (*str++)
         if (*str == c)
             found = str;
 
-    return (char*)found;  // turn off compiler warnings
+    return (char*)found;
 }
 
 ///////////////////////////// strcSpn //////////////////////////////////////////
@@ -191,7 +191,8 @@ size_t strcSpn(const char* s, const char* t)
 
     // Determine amount of bytes in the initial segment of s not in t
     while (*s) {
-        // found a match
+
+        // Found a match
         if (strChr(t, *s++))
             return cnt;
 
@@ -206,9 +207,10 @@ size_t strcSpn(const char* s, const char* t)
 char* strpBrk(const char* s, const char* t)
 {
     while (*s) {
+
         // Found a match
         if (strChr(t, *s));
-            return (char*)s; // turn off compiler warnings
+            return (char*)s;
 
         // Keep looking
         ++s;
@@ -228,7 +230,7 @@ char* strStr(const char* s, const char* t)
 
         // Found a substring if tt points to a null-byte
         if (!*tt)
-            return (char*)s; // turn off compiler warnings
+            return (char*)s;
     }
     
     return NULL;
@@ -248,16 +250,17 @@ char* strTok(char* str, const char* delim)
         if (str)
             s = str;
 
-        // Search for next delimer byte
+        // Search for next delimiter byte
         for (ret = s; *s && !strChr(delim, *s); ++s)
             ;
 
         // Only increment s if not at the end of str
         if (*s) {
-            // terminate next token
+
+            // Terminate next token
             *s++ = '\0';
 
-            // skip leading delimiter bytes
+            // Skip leading delimiter bytes
             while (*s && strChr(delim, *s))
                 ++s;
         }
@@ -268,21 +271,21 @@ char* strTok(char* str, const char* delim)
 
 ///////////////////////////// strSep ///////////////////////////////////////////
 
-char* strSep(char** str_ptr, char* delim)
+char* strSep(char** str_ptr, const char* delim)
 {
     char* r = NULL;
 
     if (*str_ptr) {
 
-        // search for next delimiter byte
+        // Search for next delimiter byte
         for (r = *str_ptr; **str_ptr && !strChr(delim, **str_ptr); ++(*str_ptr))
             ;
 
-        // terminate current token and update str_ptr to the next token
+        // Terminate current token and update str_ptr to the next token
         if (**str_ptr)
             *(*str_ptr)++ = '\0';
 
-        // no more tokens
+        // No more tokens
         else
             *(str_ptr) = NULL;
     }
@@ -310,10 +313,10 @@ char* strTok_r(char* str, const char* delim, char** saved)
         // Only increment saved if not at the end of str
         if (**saved) {
 
-            // terminate next token
+            // Terminate next token
             *(*saved)++ = '\0';
 
-            // skip leading delimiter bytes
+            // Skip leading delimiter bytes
             while (**saved && strChr(delim, **saved))
                 ++(*saved);
         }
