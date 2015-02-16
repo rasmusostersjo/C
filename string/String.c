@@ -1,5 +1,9 @@
 #include "String.h"     // Prototypes
-#include <stdlib.h>     // malloc
+#include <stdlib.h>     // malloc, rand, srand 
+#include <time.h>       // time
+
+// Internal constants
+#define STATE_SIZE 32   // size of strFry's state array
 
 ///////////////////////////// strCpy ///////////////////////////////////////////
 
@@ -323,4 +327,31 @@ char* strTok_r(char* str, const char* delim, char** saved)
     }
 
     return ret;
+}
+
+///////////////////////////// strFry ///////////////////////////////////////////
+
+char* strFry(char* str)
+{
+    static int seeded;
+
+    // First call to strFry -- seed
+    if (!seeded) {
+        seeded = 1;
+        srand(time(NULL));
+    }
+
+    // swap every character in str once
+    for (size_t i = 0, n = strLen(str); i < n; i++) {
+        
+        // get pseudo-random index
+        int j = rand() % n;
+
+        // swap
+        char tmp   = *(str + i);
+        *(str + i) = *(str + j);
+        *(str + j) = tmp;
+    }
+
+    return str;
 }

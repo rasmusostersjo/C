@@ -247,4 +247,17 @@ char* strSep(char** str_ptr, const char* delim);
  */
 char* strTok_r(char* str, const char* delim, char** save_ptr);
 
+/** strFry
+ * Randomizes the content of the string pointed to by str. Internally, this is
+ * achieved by using rand(). It is the responsibility of the function to seed
+ * rand() upon the first call to strFry().
+ *
+ * Note that the real strfry() function is implemented using random_r() and
+ * initstate_r(). Thus, this implementation may behave differently.
+ *
+ * @param str       Pointer to a string.
+ * @return          Pointer to the string with its content randomized.
+ */
+char* strFry(char* str);
+
 #endif // STRING_H
