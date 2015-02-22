@@ -260,4 +260,16 @@ char* strTok_r(char* str, const char* delim, char** save_ptr);
  */
 char* strFry(char* str);
 
+/** memCpy
+ * Copies n bytes from the buffer pointed to by src to the buffer pointed to by
+ * dest. It is the caller's responsibility to provide buffers that are large
+ * enough.
+ *
+ * @param dest      Pointer to the destination buffer.
+ * @param src       Pointer to the source buffer.
+ * @return          Pointer to the start of the destination buffer.
+ */
+
+void* memCpy(void* dest, const void* src, size_t n);
+
 #endif // STRING_H
