@@ -304,4 +304,18 @@ void* memChr(const void* str, int c, size_t n);
  */
 void *memMove(void* dest, const void* src, size_t n);
 
+/** memCmp
+ * Compares the first n bytes in the buffers pointed to by s and t. The
+ * strnCmp() function returns at the first non-matching byte or if n bytes was
+ * examined.
+ *
+ * @param s         Pointer to the first  buffer.
+ * @param t         Pointer to the second buffer.
+ * @param n         Maximum amount of bytes to compare.
+ * @return          Larger than zero:  s > t;
+ *                  Less than zero:    s < t;
+ *                  Else:              0
+ */
+int memCmp(const void* s, const void* t, size_t n);
+
 #endif // STRING_H
