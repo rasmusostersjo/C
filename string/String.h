@@ -292,4 +292,16 @@ void* memSet(void *dest, int c, size_t n);
  */
 void* memChr(const void* str, int c, size_t n);
 
+/** memMove
+ * Copies n bytes from the buffer pointed to by src to the buffer pointed to by
+ * dest. It is the caller's responsibility to provide a large enough buffer.
+ *
+ * Note that the memMove() function allows buffers that overlap.
+ *
+ * @param dest      Pointer to the destination buffer.
+ * @param src       Pointer to source buffer.
+ * @return          Pointer to the start of the destionation buffer.
+ */
+void *memMove(void* dest, const void* src, size_t n);
+
 #endif // STRING_H
