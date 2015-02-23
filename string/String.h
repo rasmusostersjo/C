@@ -281,4 +281,15 @@ void* memCpy(void* dest, const void* src, size_t n);
  */
 void* memSet(void *dest, int c, size_t n);
 
+/** memChr
+ * Searches for the first occurrence of the byte c in the buffer pointed to by
+ * str. At most, n bytes are examined.
+ *
+ * @param str       Pointer to the buffer to search.
+ * @param c         Integer containing the byte to search for.
+ * @return          Pointer to the first occurance of c in the buffer pointed to
+ *                  by str; NULL if no match could be found.
+ */
+void* memChr(const void* str, int c, size_t n);
+
 #endif // STRING_H
