@@ -269,7 +269,16 @@ char* strFry(char* str);
  * @param src       Pointer to the source buffer.
  * @return          Pointer to the start of the destination buffer.
  */
-
 void* memCpy(void* dest, const void* src, size_t n);
+
+/** memSet
+ * Fills the first n bytes in the buffer pointed to by dest with the byte c.
+ * It is the caller's responsibility to provide a large enough buffer.
+ *
+ * @param dest      Pointer to the destination buffer.
+ * @param c         Byte to fill the buffer with.
+ * @return          Pointer to the start of the destination buffer.
+ */
+void* memSet(void *dest, int c, size_t n);
 
 #endif // STRING_H
