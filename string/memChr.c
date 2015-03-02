@@ -24,10 +24,10 @@ void* memChr(const void *str, int c, size_t n)
     
     // Set up a word -- every byte consisting of the byte c
     size_t wordMask = c;
-    size_t offset   = 0x4;      // *2 in first shift --> initially byte offset
+    size_t offset   = 0x4;
     while ( (wordSize >>= 1) )
         wordMask |= wordMask << ( offset <<= 1 );
-    wordSize = sizeof(size_t);  // restore wordSize
+    wordSize = sizeof(size_t);  // Restore wordSize
 
     // Search word by word
     size_t* wordStr = (size_t*)byteStr;
