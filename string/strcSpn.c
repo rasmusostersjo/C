@@ -9,14 +9,9 @@ size_t strcSpn(const char* s, const char* t)
     size_t cnt = 0;
 
     // Determine amount of bytes in the initial segment of s not in t
-    while (*s) {
-
-        // Found a match
+    for (; *s; ++cnt)
         if (strChr(t, *s++))
-            return cnt;
-
-        ++cnt;
-    }
+            return cnt; // found a match -- return amt of bytes
 
     return cnt;
 }
