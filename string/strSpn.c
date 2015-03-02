@@ -10,7 +10,7 @@ size_t strSpn(const char* s, const char* t)
 
     for (; *s; ++s, ++cnt)
         if (!strChr(t, *s))
-            return matches; // found a non match
+            return cnt; // found a non match
 
     return cnt;
 }
