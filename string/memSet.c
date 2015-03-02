@@ -8,7 +8,7 @@ void* memSet(void* dest, int c, size_t n)
     char*   byteDest;
 
     // dest address is word aligned -- cpy word by word
-    if ( (size_t)dest % wordSize ) {
+    if ( !((size_t)dest % wordSize) ) {
         size_t word   = c;
         size_t offset = 0x4;
         
