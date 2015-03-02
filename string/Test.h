@@ -22,4 +22,15 @@ int test_strCpy(void);
  */
 int test_strCmp(void);
 
+/** test_strLen
+ * Performed tests:
+ *  -- Empty string
+ *  -- Normal strings
+ *  -- Weird String
+ *  -- Random strings
+ *
+ * @return      Success (1); else failure (0).
+ */
+int test_strLen(void);
+
 #endif // TEST_H
